@@ -1,25 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const object = React.createElement("div", { id: "parent" }, [
-  React.createElement(
-    "div",
-    { id: "child" },
-    [
-      React.createElement("h1", {}, "This is H1 Tag"),
-      React.createElement("h2", {}, "This is H2 Tag"),
-    ] //this is how you create a sibling
-  ),
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "This is H1 Tag"),
-    React.createElement("h2", {}, "This is H2 Tag"),
-  ]),
-]);
-
-//it becomes very difficult to manage and its untidy to maintain
-
+// React element
 const object1 = React.createElement("h1", { id: "text" }, "Hello from react");
+
+//React Component
+const HeadingComponent = () => {
+  return <h1>Hello From component</h1>;
+};
+
+//converting
+const HeadingComponent1 = <h1>Hello From component</h1>;
+
+// React Component Composition
+const AnotherComponent = () => {
+  return (
+    <div>
+      <HeadingComponent></HeadingComponent>
+      <h1>Hello From another Component</h1>
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(object);
+root.render(<AnotherComponent />);
